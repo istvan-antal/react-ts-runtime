@@ -1,0 +1,39 @@
+{
+  "name": "react-ts-runtime",
+  "version": "0.0.1-alpha1",
+  "description": "Build, run and test tools for React projects written in TypeScript.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo 'Implement this.'",
+    "build": "tsc --declaration"
+  },
+  "engines": {
+    "node": ">=9.7.1",
+    "npm": ">=5.7.1"
+  },
+  "bin": {
+    "react-ts-runtime": "./dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istvan-antal/react-ts-runtime.git"
+  },
+  "keywords": [
+    "react",
+    "typescript"
+  ],
+  "author": "István Antal <i@istvan.xyz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/istvan-antal/react-ts-runtime/issues"
+  },
+  "homepage": "https://github.com/istvan-antal/react-ts-runtime#readme",
+  "dependencies": {
+    "@types/node": "^9.4.6",
+    "html-webpack-plugin": "^3.0.6",
+    "react-dev-utils": "^5.0.0",
+    "typescript": "^2.7.2",
+    "webpack": "^4.1.0"
+  }
+}
