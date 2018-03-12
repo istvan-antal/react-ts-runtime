@@ -1,6 +1,6 @@
 {
   "name": "react-ts-runtime",
-  "version": "0.0.1-alpha1",
+  "version": "0.0.2",
   "description": "Build, run and test tools for React projects written in TypeScript.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -33,7 +33,13 @@
     "@types/node": "^9.4.6",
     "html-webpack-plugin": "^3.0.6",
     "react-dev-utils": "^5.0.0",
+    "ts-loader": "^4.0.1",
     "typescript": "^2.7.2",
-    "webpack": "^4.1.0"
+    "webpack": "^4.1.0",
+    "webpack-dev-server": "^3.1.1",
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   }
 }

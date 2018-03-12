@@ -4,6 +4,7 @@ import { resolve, join } from 'path';
 
 export const createWebpackConfig = ({ hmr }: { hmr?: boolean } = {}) => {
     return ({
+        mode: hmr ? 'development' : 'production',
         entry: hmr ?
             [
                 require.resolve('react-dev-utils/webpackHotDevClient'),
@@ -13,13 +14,25 @@ export const createWebpackConfig = ({ hmr }: { hmr?: boolean } = {}) => {
                 './app/index.tsx',
             ],
         output: {
-            path: './dist',
+            path: resolve(process.cwd(), './dist'),
             filename: 'app.bundle.js'
         },
         module: {
             rules: [
                 { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-                { test: /\.tsx?$/, use: 'ts-loader' }
+                {
+                    test: /\.tsx?$/,
+                    use: [{
+                        loader: 'ts-loader',
+                            options: {
+                                configFile: require.resolve('react-ts-runtime/tsconfig.json'),
+                                compilerOptions: {
+                                    jsx: 'react',
+                                },
+                            },
+                        },
+                    ],
+                },
             ]
         },
         resolve: {
@@ -49,5 +62,5 @@ export const createWebpackConfig = ({ hmr }: { hmr?: boolean } = {}) => {
 };
 
 export const createCompiler = ({ hmr }: { hmr?: boolean } = {}) => {
-    return webpack(createWebpackConfig());
+    return webpack(createWebpackConfig({ hmr }));
 };
