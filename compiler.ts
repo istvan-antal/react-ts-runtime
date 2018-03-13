@@ -1,10 +1,109 @@
+import { resolve, join } from 'path';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-import { resolve, join } from 'path';
+const autoprefixer = require('autoprefixer');
+const postcssSimpleVars = require('postcss-simple-vars');
+const postcssImport = require('postcss-import');
+const postcssNested = require('postcss-nested');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-export const createWebpackConfig = ({ hmr }: { hmr?: boolean } = {}) => {
+const packageJson = require(resolve(process.cwd(), './package.json'));
+const version = process.env.VERSION || packageJson.version;
+const extractTextPluginOptions = { publicPath: './' };
+const postCssOptions = {
+    // Necessary for external CSS imports to work
+    // https://github.com/facebookincubator/create-react-app/issues/2677
+    // ident: 'postcss',
+    sourceMap: true,
+    plugins: () => [
+        postcssImport(),
+        // require('postcss-flexbugs-fixes'),
+        postcssSimpleVars(),
+        postcssNested(),
+        autoprefixer({
+            browsers: [
+                '>1%',
+                'last 4 versions',
+                'Firefox ESR',
+                'not ie < 9', // React doesn't support IE8 anyway
+            ],
+            flexbox: 'no-2009',
+        }),
+    ],
+};
+
+const createPostCssLoader = (development?: boolean) => {
+    if (!development) {
+        return {
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract(
+                Object.assign({
+                    fallback: {
+                        loader: require.resolve('style-loader'),
+                        options: {
+                            hmr: false,
+                        },
+                    },
+                    use: [
+                        {
+                            loader: require.resolve('css-loader'),
+                            options: {
+                                importLoaders: 1,
+                                minimize: true,
+                                sourceMap: true,
+                            },
+                        },
+                        {
+                            loader: require.resolve('postcss-loader'),
+                            options: postCssOptions,
+                        },
+                    ],
+                },
+                    extractTextPluginOptions,
+                ),
+            ),
+            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+        };
+    }
+
+    return {
+        test: /\.scss$/,
+        use: [
+            require.resolve('style-loader'),
+            {
+                loader: require.resolve('css-loader'),
+                options: {
+                    importLoaders: 1,
+                },
+            },
+            {
+                loader: require.resolve('postcss-loader'),
+                options: postCssOptions,
+            },
+        ],
+    };
+};
+
+export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
+    const plugins = [
+        new HtmlWebpackPlugin({
+            template: './app/index.html'
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+    ];
+
+
+    if (!development) {
+        plugins.push(
+            new ExtractTextPlugin({
+                filename: `style-${version}.css`,
+            }),
+        );
+    }
+
     return ({
-        mode: hmr ? 'development' : 'production',
+        mode: development ? 'development' : 'production',
         entry: hmr ?
             [
                 require.resolve('react-dev-utils/webpackHotDevClient'),
@@ -15,11 +114,10 @@ export const createWebpackConfig = ({ hmr }: { hmr?: boolean } = {}) => {
             ],
         output: {
             path: resolve(process.cwd(), './dist'),
-            filename: 'app.bundle.js'
+            filename: `app.bundle-${version}.js`,
         },
         module: {
             rules: [
-                { test: /\.css$/, use: ['style-loader', 'css-loader'] },
                 {
                     test: /\.tsx?$/,
                     use: [{
@@ -33,18 +131,21 @@ export const createWebpackConfig = ({ hmr }: { hmr?: boolean } = {}) => {
                         },
                     ],
                 },
+                {
+                    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+                    loader: require.resolve('url-loader'),
+                    options: {
+                        limit: 10000,
+                        name: 'static/[name].[hash:8].[ext]',
+                    },
+                },
+                createPostCssLoader(development),
             ]
         },
         resolve: {
             extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
         },
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: './app/index.html'
-            }),
-            new webpack.NamedModulesPlugin(),
-            new webpack.HotModuleReplacementPlugin(),
-        ],
+        plugins,
         externals: [
             (function () {
                 var IGNORES = [
@@ -61,6 +162,6 @@ export const createWebpackConfig = ({ hmr }: { hmr?: boolean } = {}) => {
     });
 };
 
-export const createCompiler = ({ hmr }: { hmr?: boolean } = {}) => {
-    return webpack(createWebpackConfig({ hmr }));
+export const createCompiler = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
+    return webpack(createWebpackConfig({ hmr, development }));
 };

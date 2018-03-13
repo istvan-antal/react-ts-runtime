@@ -5,7 +5,9 @@ const port = '3000';
 const host = 'localhost';
 
 export const run = () => {
-    const devServer = new WebpackDevServer(createCompiler({ hmr: true }), { hot: true });
+    const devServer = new WebpackDevServer(createCompiler({
+        hmr: true, development: true,
+    }), { hot: true });
     // Launch WebpackDevServer.
     devServer.listen(port, host, (err: any) => {
         if (err) {
