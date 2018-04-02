@@ -1,4 +1,5 @@
 import { resolve, join } from 'path';
+import { existsSync } from 'fs';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -102,6 +103,10 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
         );
     }
 
+    const projectHasTsConfig = existsSync(
+        resolve(join(process.cwd(), 'tsconfig.json'))
+    );
+
     return ({
         mode: development ? 'development' : 'production',
         entry: hmr ?
@@ -121,8 +126,8 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
                 {
                     test: /\.tsx?$/,
                     use: [{
-                        loader: 'ts-loader',
-                            options: {
+                        loader: require.resolve('ts-loader'),
+                            options: projectHasTsConfig ? undefined : {
                                 configFile: require.resolve('react-ts-runtime/tsconfig.json'),
                                 compilerOptions: {
                                     jsx: 'react',
