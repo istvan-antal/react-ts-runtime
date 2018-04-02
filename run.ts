@@ -1,8 +1,15 @@
 import { createCompiler } from './compiler';
 const chalk = require('chalk');
 const WebpackDevServer = require('webpack-dev-server');
+const {
+    choosePort,
+    prepareProxy,
+    prepareUrls,
+} = require('react-dev-utils/WebpackDevServerUtils');
 const port = '3000';
-const host = 'localhost';
+const host = '0.0.0.0';
+const protocol = 'http';
+const urls = prepareUrls(protocol, host, port);
 
 export const run = () => {
     const devServer = new WebpackDevServer(createCompiler({
@@ -17,6 +24,8 @@ export const run = () => {
             clearConsole();
         }*/
         console.log(chalk.cyan('Starting the development server...\n'));
+        console.log(`Local URL: ${urls.localUrlForTerminal}`);
+        console.log(`Local Network URL: ${urls.lanUrlForTerminal}`);
         // openBrowser(urls.localUrlForBrowser);
     });
 

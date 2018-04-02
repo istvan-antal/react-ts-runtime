@@ -1,4 +1,4 @@
-import { resolve, join } from 'path';
+import { resolve, join, dirname } from 'path';
 import { existsSync } from 'fs';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -10,6 +10,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const packageJson = require(resolve(process.cwd(), './package.json'));
 const version = process.env.VERSION || packageJson.version;
+const appEntryPoint = packageJson.main || './app/index';
+const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
 const extractTextPluginOptions = { publicPath: './' };
 const postCssOptions = {
     // Necessary for external CSS imports to work
@@ -88,7 +90,7 @@ const createPostCssLoader = (development?: boolean) => {
 export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
     const plugins = [
         new HtmlWebpackPlugin({
-            template: './app/index.html'
+            template: appHtmlTemplate,
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -112,10 +114,10 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
         entry: hmr ?
             [
                 require.resolve('react-dev-utils/webpackHotDevClient'),
-                './app/index.tsx',
+                appEntryPoint,
             ] :
             [
-                './app/index.tsx',
+                appEntryPoint,
             ],
         output: {
             path: resolve(process.cwd(), './dist'),

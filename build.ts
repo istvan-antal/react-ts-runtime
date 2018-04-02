@@ -8,6 +8,10 @@ export const build = () => {
             throw err;
         }
         const messages = formatWebpackMessages(stats.toJson({}, true));
+
+        if (messages.errors.length) {
+            throw new Error(messages.errors.join('\n\n'));
+        }
         if (messages.warnings.length) {
             console.log(chalk.yellow('Compiled with warnings.\n'));
             console.log(messages.warnings.join('\n\n'));
