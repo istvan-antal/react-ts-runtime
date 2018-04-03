@@ -9,9 +9,13 @@ const postcssNested = require('postcss-nested');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const packageJson = require(resolve(process.cwd(), './package.json'));
+
 const version = process.env.VERSION || packageJson.version;
 const appEntryPoint = packageJson.main || './app/index';
 const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
+const reactTsRuntimeConfig = packageJson.reactTsRuntime || {}
+const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware && require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware));
+
 const extractTextPluginOptions = { publicPath: './' };
 const postCssOptions = {
     // Necessary for external CSS imports to work
@@ -109,7 +113,7 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
         resolve(join(process.cwd(), 'tsconfig.json'))
     );
 
-    return ({
+    const config = ({
         mode: development ? 'development' : 'production',
         entry: hmr ?
             [
@@ -167,6 +171,12 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
             })()
         ]
     });
+
+    if (appCompilerMiddleware) {
+        return appCompilerMiddleware(config, { hmr, development });
+    }
+
+    return config;
 };
 
 export const createCompiler = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
