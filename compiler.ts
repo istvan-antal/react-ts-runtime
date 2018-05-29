@@ -42,7 +42,7 @@ const postCssOptions = {
 const createPostCssLoader = (development?: boolean) => {
     if (!development) {
         return {
-            test: /\.scss$/,
+            test: [/\.css$/, /\.scss$/],
             loader: ExtractTextPlugin.extract(
                 Object.assign({
                     fallback: {
@@ -74,7 +74,7 @@ const createPostCssLoader = (development?: boolean) => {
     }
 
     return {
-        test: /\.scss$/,
+        test: [/\.css$/, /\.scss$/],
         use: [
             require.resolve('style-loader'),
             {
@@ -143,7 +143,7 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
                     ],
                 },
                 {
-                    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+                    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ttf$/, /\.eot$/, /\.woff$/],
                     loader: require.resolve('url-loader'),
                     options: {
                         limit: 10000,
