@@ -2,11 +2,9 @@ import { createCompiler } from './compiler';
 const chalk = require('chalk');
 const WebpackDevServer = require('webpack-dev-server');
 const {
-    choosePort,
-    prepareProxy,
     prepareUrls,
 } = require('react-dev-utils/WebpackDevServerUtils');
-const port = '3000';
+const port = process.env.PORT || '3000';
 const host = '0.0.0.0';
 const protocol = 'http';
 const urls = prepareUrls(protocol, host, port);
