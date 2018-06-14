@@ -13,7 +13,6 @@ export const run = () => {
     const devServer = new WebpackDevServer(createCompiler({
         hmr: true, development: true,
     }), { hot: true });
-    // Launch WebpackDevServer.
     devServer.listen(port, host, (err: any) => {
         if (err) {
             return console.log(err);
