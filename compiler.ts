@@ -125,7 +125,7 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
             ],
         output: {
             path: resolve(process.cwd(), './dist'),
-            filename: `app.bundle-${version}.js`,
+            filename: `[name]-${version}.js`,
         },
         module: {
             rules: [
