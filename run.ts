@@ -1,5 +1,6 @@
-import { createCompiler } from './compiler';
+import { createWebpackConfig } from './compiler';
 const chalk = require('chalk');
+const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const {
     prepareUrls,
@@ -10,9 +11,10 @@ const protocol = 'http';
 const urls = prepareUrls(protocol, host, port);
 
 export const run = () => {
-    const devServer = new WebpackDevServer(createCompiler({
+    const config = createWebpackConfig({
         hmr: true, development: true,
-    }), { hot: true });
+    });
+    const devServer = new WebpackDevServer(webpack(config), config.devServer || { hot: true });
     devServer.listen(port, host, (err: any) => {
         if (err) {
             return console.log(err);
