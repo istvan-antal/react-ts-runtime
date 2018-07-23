@@ -97,9 +97,11 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
             template: appHtmlTemplate,
         }),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
     ];
 
+    if (hmr) {
+        plugins.push(new webpack.HotModuleReplacementPlugin());
+    }
 
     if (!development) {
         plugins.push(
