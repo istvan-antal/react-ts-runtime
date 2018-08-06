@@ -1,6 +1,6 @@
 {
   "name": "react-ts-runtime",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Build, run and test tools for React projects written in TypeScript.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -9,8 +9,8 @@
     "build": "tsc --declaration"
   },
   "engines": {
-    "node": ">=9.7.1",
-    "npm": ">=5.7.1"
+    "node": ">=10.7.0",
+    "npm": ">=6.3.0"
   },
   "bin": {
     "react-ts-runtime": "./dist/cli.js"
@@ -31,8 +31,6 @@
   "homepage": "https://github.com/istvan-antal/react-ts-runtime#readme",
   "dependencies": {
     "@types/node": "^10.5.6",
-    "@types/react": "^16.4.7",
-    "@types/react-dom": "^16.0.6",
     "autoprefixer": "^9.1.0",
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -46,9 +44,7 @@
     "postcss-mixins": "^6.2.0",
     "postcss-nested": "^3.0.0",
     "postcss-simple-vars": "^4.1.0",
-    "react": "^16.4.2",
     "react-dev-utils": "^5.0.1",
-    "react-dom": "^16.4.2",
     "style-loader": "^0.21",
     "ts-loader": "^4.4.2",
     "typescript": "^3.0.1",
