@@ -13,8 +13,12 @@ const packageJson = require(resolve(process.cwd(), './package.json'));
 const version = process.env.VERSION || packageJson.version;
 const appEntryPoint = packageJson.main || './app/index';
 const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
-const reactTsRuntimeConfig = packageJson.reactTsRuntime || {}
+const reactTsRuntimeConfig = packageJson.reactTsRuntime || {};
 const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware && require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware));
+
+if (reactTsRuntimeConfig.html === undefined) {
+    reactTsRuntimeConfig.html = true;
+}
 
 const extractTextPluginOptions = { publicPath: './' };
 const postCssOptions = {
@@ -93,11 +97,14 @@ const createPostCssLoader = (development?: boolean) => {
 
 export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
     const plugins = [
-        new HtmlWebpackPlugin({
-            template: appHtmlTemplate,
-        }),
         new webpack.NamedModulesPlugin(),
     ];
+
+    if (reactTsRuntimeConfig.html) {
+        plugins.push(new HtmlWebpackPlugin({
+            template: appHtmlTemplate,
+        }));
+    }
 
     if (hmr) {
         plugins.push(new webpack.HotModuleReplacementPlugin());
