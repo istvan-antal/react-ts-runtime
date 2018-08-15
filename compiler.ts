@@ -138,7 +138,7 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
         },
         module: {
             rules: [
-                {
+                /* {
                     test: /\.tsx?$/,
                     use: [{
                         loader: require.resolve('ts-loader'),
@@ -150,7 +150,11 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
                             },
                         },
                     ],
-                },
+                }, */
+                // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+                { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+                // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+                { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
                 {
                     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ttf$/, /\.eot$/, /\.woff$/],
                     loader: require.resolve('url-loader'),
