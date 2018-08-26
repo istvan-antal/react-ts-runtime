@@ -95,20 +95,10 @@ const createPostCssLoader = (development?: boolean) => {
     };
 };
 
-export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
+export const createBaseWebpackConfig = ({ development }: { development?: boolean } = {}) => {
     const plugins = [
         new webpack.NamedModulesPlugin(),
     ];
-
-    if (reactTsRuntimeConfig.html) {
-        plugins.push(new HtmlWebpackPlugin({
-            template: appHtmlTemplate,
-        }));
-    }
-
-    if (hmr) {
-        plugins.push(new webpack.HotModuleReplacementPlugin());
-    }
 
     if (!development) {
         plugins.push(
@@ -124,14 +114,7 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
 
     const config = ({
         mode: development ? 'development' : 'production',
-        entry: hmr ?
-            [
-                require.resolve('react-dev-utils/webpackHotDevClient'),
-                appEntryPoint,
-            ] :
-            [
-                appEntryPoint,
-            ],
+        entry: undefined as any,
         output: {
             path: resolve(process.cwd(), './dist'),
             filename: `[name]-${version}.js`,
@@ -177,6 +160,31 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
             })()
         ]
     });
+
+    return config;
+};
+
+export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
+    const config = createBaseWebpackConfig({ development });
+
+    if (reactTsRuntimeConfig.html) {
+        config.plugins.push(new HtmlWebpackPlugin({
+            template: appHtmlTemplate,
+        }));
+    }
+
+    config.entry = hmr ?
+        [
+            require.resolve('react-dev-utils/webpackHotDevClient'),
+            appEntryPoint,
+        ] :
+        [
+            appEntryPoint,
+        ];
+
+    if (hmr) {
+        config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    }
 
     if (appCompilerMiddleware) {
         return appCompilerMiddleware(config, { hmr, development });
