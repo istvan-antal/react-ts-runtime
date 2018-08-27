@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node -r ts-node/register
 import { build } from './build';
 import { run } from './run';
 
