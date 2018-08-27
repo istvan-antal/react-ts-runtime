@@ -14,7 +14,7 @@ const version = process.env.VERSION || packageJson.version;
 const appEntryPoint = packageJson.main || './app/index';
 const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
 const reactTsRuntimeConfig = packageJson.reactTsRuntime || {};
-const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware && require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware));
+const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware && require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware)).default;
 
 if (reactTsRuntimeConfig.html === undefined) {
     reactTsRuntimeConfig.html = true;
