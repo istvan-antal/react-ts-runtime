@@ -114,6 +114,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
 
     const config = ({
         mode: development ? 'development' : 'production',
+        devtool: !development ? 'source-map' : 'cheap-module-source-map',
         entry: undefined as any,
         output: {
             path: resolve(process.cwd(), './dist'),
