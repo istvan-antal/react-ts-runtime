@@ -1,6 +1,6 @@
 {
   "name": "react-ts-runtime",
-  "version": "0.2.0",
+  "version": "0.2.5",
   "description": "Build, run and test tools for React projects written in TypeScript.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -52,7 +52,6 @@
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.22",
     "ts-jest": "^23.1.4",
-    "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.6.0",
     "tslint-react": "^3.6.0",
