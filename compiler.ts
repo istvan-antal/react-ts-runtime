@@ -133,7 +133,16 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                 // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
                 { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
                 {
-                    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ttf$/, /\.eot$/, /\.woff$/],
+                    test: [
+                        /\.bmp$/,
+                        /\.gif$/,
+                        /\.jpe?g$/,
+                        /\.png$/,
+                        /\.ttf$/,
+                        /\.eot$/,
+                        /\.woff$/,
+                        /\.svg$/
+                    ],
                     loader: require.resolve('url-loader'),
                     options: {
                         limit: 10000,
