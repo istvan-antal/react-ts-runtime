@@ -31,6 +31,13 @@ node('nodejs') {
         stage('build') {
             sh "npm run build"
         }
+
+        stage('build demos') {
+            dir('demos/single-page-react') {
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
     }
     cleanWs()
 }
