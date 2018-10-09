@@ -13,7 +13,7 @@ properties([
 ])
 
 node('nodejs') {
-    useNodeJs('10.2.1', '6.1.0')
+    useNodeJs('10.11.0', '6.4.1')
     
     dir('build') {
         stage('checkout') {
