@@ -67,6 +67,8 @@
     "**/*.tsx",
   ],
   "exclude": [
+    "node_modules",
+    "./demos",
     "./dist"
   ]
 }
