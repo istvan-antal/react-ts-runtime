@@ -1,2 +1,4 @@
 /node_modules
 /dist
+/demos/*/node_modules
+/demos/*/dist
