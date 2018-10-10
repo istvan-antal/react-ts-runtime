@@ -13,7 +13,6 @@ properties([
 ])
 
 node('nodejs') {
-    useNodeJs()
     
     dir('build') {
         stage('checkout') {
@@ -21,6 +20,7 @@ node('nodejs') {
         }
 
         stage('npm install') {
+            useNodeJs()
             sh "npm install"
         }
 
