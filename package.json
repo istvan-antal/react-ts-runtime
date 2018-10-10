@@ -10,8 +10,8 @@
     "prepublish": "npm run build"
   },
   "engines": {
-    "node": ">=10.7.0",
-    "npm": ">=6.3.0"
+    "node": "10.11.0",
+    "npm": "6.4.1"
   },
   "bin": {
     "react-ts-runtime": "./dist/cli.js"
