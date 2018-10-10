@@ -1,0 +1,21 @@
+{
+  "name": "server-side-rendering",
+  "version": "1.0.0",
+  "description": "Single page React demo with react-ts-runtime.",
+  "main": "./src/index.tsx",
+  "scripts": {
+    "start": "react-ts-runtime run",
+    "build": "NODE_ENV=production ts-node -P ./tsconfig.json ./scripts/build.ts",
+    "test": "echo test"
+  },
+  "author": "István Antal <i@istvan.xyz>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/react": "^16.4.16",
+    "@types/react-dom": "^16.0.9",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-ts-runtime": "file://../..",
+    "ts-node": "^7.0.1"
+  }
+}

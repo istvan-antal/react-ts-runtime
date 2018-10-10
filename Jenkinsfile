@@ -37,6 +37,11 @@ node('nodejs') {
                 sh 'npm install'
                 sh 'npm run build'
             }
+
+            dir('demos/server-side-rendering') {
+                sh 'npm install'
+                sh 'npm run build'
+            }
         }
     }
     cleanWs()
