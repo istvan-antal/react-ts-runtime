@@ -156,6 +156,20 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
             extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
         },
         plugins,
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    commons: {
+                        name: 'commons',
+                        chunks: 'initial',
+                        minChunks: 2,
+                        minSize: 0,
+                    },
+                },
+            },
+            occurrenceOrder: true, // To keep filename consistent between
+            // different modes (for example building only)
+        },
         externals: [
             (function () {
                 var IGNORES = [
