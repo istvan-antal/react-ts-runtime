@@ -1,6 +1,6 @@
 {
   "name": "react-ts-runtime",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Build, run and test tools for React projects written in TypeScript.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -31,8 +31,8 @@
   },
   "homepage": "https://github.com/istvan-antal/react-ts-runtime#readme",
   "dependencies": {
-    "@types/node": "^10.11.6",
-    "autoprefixer": "^9.1.5",
+    "@types/node": "^10.12.0",
+    "autoprefixer": "^9.2.1",
     "awesome-typescript-loader": "^5.2.1",
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -47,16 +47,16 @@
     "postcss-mixins": "^6.2.0",
     "postcss-nested": "^3.0.0",
     "postcss-simple-vars": "^4.1.0",
-    "react-dev-utils": "^5.0.2",
+    "react-dev-utils": "^5.0.3",
     "source-map-loader": "^0.2.4",
-    "style-loader": "^0.22",
+    "style-loader": "^0.23.1",
     "ts-jest": "^22.4.6",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.6.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.1.2",
-    "url-loader": "^1.1.1",
-    "webpack": "^4.20.2",
+    "typescript": "^3.1.3",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.21.0",
     "webpack-dev-server": "^3.1.9"
   }
 }
