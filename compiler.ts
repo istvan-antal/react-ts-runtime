@@ -6,7 +6,6 @@ const autoprefixer = require('autoprefixer');
 const postcssSimpleVars = require('postcss-simple-vars');
 const postcssImport = require('postcss-import');
 const postcssNested = require('postcss-nested');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const packageJson = require(resolve(process.cwd(), './package.json'));
