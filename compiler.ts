@@ -172,7 +172,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                     loader: require.resolve('url-loader'),
                     options: {
                         limit: 10000,
-                        name: 'static/[name].[hash:8].[ext]',
+                        name: '[name].[hash:8].[ext]',
                     },
                 },
                 createPostCssLoader(development),
