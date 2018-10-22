@@ -50,7 +50,7 @@ const createPostCssLoader = (development?: boolean) => {
                 {
                     loader: MiniCssExtractPlugin.loader,
                     options: {
-                        publicPath: './static',
+                        publicPath: './',
                     },
                 },
                 {
@@ -129,8 +129,8 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
         plugins.push(new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: 'static/[name].[contenthash:8].css',
-            chunkFilename: 'static/[name].[contenthash:8].chunk.css',
+            filename: '[name].[contenthash:8].css',
+            chunkFilename: '[name].[contenthash:8].chunk.css',
         }));
     }
 
