@@ -20,7 +20,6 @@ if (reactTsRuntimeConfig.html === undefined) {
     reactTsRuntimeConfig.html = true;
 }
 
-const extractTextPluginOptions = { publicPath: './' };
 const postCssOptions = {
     // Necessary for external CSS imports to work
     // https://github.com/facebookincubator/create-react-app/issues/2677
@@ -130,8 +129,8 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
         plugins.push(new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: 'static/css/[name].[contenthash:8].css',
-            chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+            filename: 'static/[name].[contenthash:8].css',
+            chunkFilename: 'static/[name].[contenthash:8].chunk.css',
         }));
     }
 
