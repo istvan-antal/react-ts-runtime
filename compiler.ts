@@ -7,6 +7,7 @@ const postcssSimpleVars = require('postcss-simple-vars');
 const postcssImport = require('postcss-import');
 const postcssNested = require('postcss-nested');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const packageJson = require(resolve(process.cwd(), './package.json'));
 
@@ -47,7 +48,27 @@ const createPostCssLoader = (development?: boolean) => {
     if (!development) {
         return {
             test: [/\.css$/, /\.scss$/],
-            loader: ExtractTextPlugin.extract(
+            loaders: [
+                {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        publicPath: './',
+                    },
+                },
+                {
+                    loader: require.resolve('css-loader'),
+                    options: {
+                        importLoaders: 1,
+                        minimize: true,
+                        sourceMap: true,
+                    },
+                },
+                {
+                    loader: require.resolve('postcss-loader'),
+                    options: postCssOptions,
+                },
+            ],
+            /* loader: ExtractTextPlugin.extract(
                 Object.assign({
                     fallback: {
                         loader: require.resolve('style-loader'),
@@ -74,6 +95,7 @@ const createPostCssLoader = (development?: boolean) => {
                 ),
             ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+            */
         };
     }
 
@@ -101,11 +123,17 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
     ];
 
     if (!development) {
-        plugins.push(
+        /* plugins.push(
             new ExtractTextPlugin({
                 filename: `style-${version}.css`,
             }),
-        );
+        );*/
+        plugins.push(new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: 'static/css/[name].[contenthash:8].css',
+            chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+        }));
     }
 
     const projectHasTsConfig = existsSync(
