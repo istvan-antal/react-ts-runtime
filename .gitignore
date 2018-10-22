@@ -3,3 +3,4 @@
 /demos/*/node_modules
 /demos/*/dist
 /demos/*/package-lock.json
+.DS_Store
