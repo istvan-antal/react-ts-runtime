@@ -50,7 +50,7 @@ const createPostCssLoader = (development?: boolean) => {
                 {
                     loader: MiniCssExtractPlugin.loader,
                     options: {
-                        publicPath: './',
+                        publicPath: './static',
                     },
                 },
                 {
@@ -172,7 +172,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                     loader: require.resolve('url-loader'),
                     options: {
                         limit: 10000,
-                        name: '[name].[hash:8].[ext]',
+                        name: 'static/[name].[hash:8].[ext]',
                     },
                 },
                 createPostCssLoader(development),
