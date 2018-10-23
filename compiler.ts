@@ -167,6 +167,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                         /\.ttf$/,
                         /\.eot$/,
                         /\.woff$/,
+                        /\.woff2$/,
                         /\.svg$/
                     ],
                     loader: require.resolve('url-loader'),
