@@ -1,6 +1,6 @@
 {
   "name": "react-ts-runtime",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "Build, run and test tools for React projects written in TypeScript.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
