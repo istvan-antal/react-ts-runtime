@@ -42,6 +42,11 @@ node('nodejs') {
                 sh 'npm install'
                 sh 'npm run build'
             }
+
+            dir('demos/wasm') {
+                sh 'npm install'
+                sh 'npm run build'
+            }
         }
     }
     cleanWs()

@@ -148,6 +148,15 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
         },
         module: {
             rules: [
+                {
+                    test: /\.(c|cpp)$/,
+                    use: {
+                        loader: 'cpp-wasm-loader',
+                        options: {
+                            asmJs: true,
+                        },
+                    },
+                },
                 // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
                 {
                     test: /\.tsx?$/,
@@ -168,7 +177,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                         /\.eot$/,
                         /\.woff$/,
                         /\.woff2$/,
-                        /\.svg$/
+                        /\.svg$/,
                     ],
                     loader: require.resolve('url-loader'),
                     options: {
@@ -180,7 +189,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
             ]
         },
         resolve: {
-            extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
+            extensions: ['.js', '.json', '.jsx', '.ts', '.tsx', '.c', '.cpp'],
         },
         plugins,
         optimization: {
