@@ -12,8 +12,11 @@ properties([
     disableConcurrentBuilds()
 ])
 
+def demos = [
+    'single-page-react', 'server-side-rendering', 'wasm'
+];
+
 node('nodejs') {
-    
     dir('build') {
         stage('checkout') {
             checkout scm
@@ -32,20 +35,16 @@ node('nodejs') {
             sh "npm run build"
         }
 
-        stage('build demos') {
-            dir('demos/single-page-react') {
-                sh 'npm install'
-                sh 'npm run build'
-            }
-
-            dir('demos/server-side-rendering') {
-                sh 'npm install'
-                sh 'npm run build'
-            }
-
-            dir('demos/wasm') {
-                sh 'npm install'
-                sh 'npm run build'
+        demos.each{ v -> 
+            stage("build demos/${v}") {
+                dir("demos/${v}") {
+                    sh 'npm install'
+                    if (v == "wasm") {
+                        sh 'source ~/emsdk/emsdk_env.sh; npm run build'
+                    } else {
+                        sh 'npm run build'
+                    }
+                }
             }
         }
     }
