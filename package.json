@@ -11,7 +11,7 @@
     "prepublish": "npm run build"
   },
   "engines": {
-    "node": "10.12.0",
+    "node": "10.13.0",
     "npm": "6.4.1"
   },
   "bin": {
@@ -32,32 +32,32 @@
   },
   "homepage": "https://github.com/istvan-antal/react-ts-runtime#readme",
   "dependencies": {
-    "@types/node": "^10.12.0",
-    "autoprefixer": "^9.2.1",
+    "@types/node": "^10.12.2",
+    "autoprefixer": "^9.3.1",
     "awesome-typescript-loader": "^5.2.1",
-    "css-loader": "^1.0.0",
+    "css-loader": "^1.0.1",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.6.0",
     "mini-css-extract-plugin": "^0.4.4",
     "postcss": "^7.0.5",
-    "postcss-import": "^12.0.0",
+    "postcss-import": "^12.0.1",
     "postcss-initial": "^3.0.0",
     "postcss-loader": "^3.0.0",
     "postcss-math": "0.0.10",
     "postcss-mixins": "^6.2.0",
     "postcss-nested": "^4.1.0",
     "postcss-simple-vars": "^5.0.1",
-    "react-dev-utils": "^6.0.5",
+    "react-dev-utils": "^6.1.1",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "ts-jest": "^23.10.4",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.5.4",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.1.3",
+    "typescript": "^3.1.6",
     "url-loader": "^1.1.2",
-    "webpack": "^4.22.0",
-    "webpack-dev-server": "^3.1.9"
+    "webpack": "^4.24.0",
+    "webpack-dev-server": "^3.1.10"
   }
 }
