@@ -13,7 +13,7 @@ properties([
 ])
 
 def demos = [
-    'single-page-react', 'server-side-rendering', 'wasm'
+    'single-page-react', 'server-side-rendering', 'redux-typescript', 'wasm'
 ];
 
 node('nodejs') {
