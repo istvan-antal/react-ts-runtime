@@ -15,7 +15,7 @@
     "npm": "6.4.1"
   },
   "bin": {
-    "@charge/sdk": "./dist/cli.js"
+    "charge-sdk": "./dist/cli.js"
   },
   "repository": {
     "type": "git",
