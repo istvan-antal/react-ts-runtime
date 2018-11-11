@@ -157,11 +157,11 @@ export const create = () => {
         const packageJsonPath = resolve(projectDir, 'package.json');
         const packageJson = JSON.parse(readFileSync(packageJsonPath).toString());
         packageJson.main = './src/index.tsx';
-        packageJson.scripts.start = '@charge/sdk run';
-        packageJson.scripts.build = '@charge/sdk build';
+        packageJson.scripts.start = 'charge-sdk run';
+        packageJson.scripts.build = 'charge-sdk build';
         writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 4));
 
-        spawnSync('npm', ['install', '@charge/sdk', 'react', 'react-dom', '@types/react', '@types/react-dom'], {
+        spawnSync('npm', ['install', 'charge-sdk', 'react', 'react-dom', '@types/react', '@types/react-dom'], {
             cwd: projectDir,
             stdio: 'inherit',
         });

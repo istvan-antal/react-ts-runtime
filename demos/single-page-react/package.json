@@ -1,11 +1,11 @@
 {
   "name": "single-page-react",
   "version": "1.0.0",
-  "description": "Single page React demo with @charge/sdk.",
+  "description": "Single page React demo with charge-sdk.",
   "main": "./src/index.tsx",
   "scripts": {
-    "start": "@charge/sdk run",
-    "build": "@charge/sdk build",
+    "start": "charge-sdk run",
+    "build": "charge-sdk build",
     "test": "echo test"
   },
   "author": "István Antal <i@istvan.xyz>",
@@ -15,6 +15,6 @@
     "@types/react-dom": "^16.0.9",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "@charge/sdk": "file://../.."
+    "charge-sdk": "file://../.."
   }
 }

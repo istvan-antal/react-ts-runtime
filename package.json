@@ -1,5 +1,5 @@
 {
-  "name": "@charge/sdk",
+  "name": "charge-sdk",
   "version": "0.3.1",
   "description": "Build, run and test tools for React projects written in TypeScript.",
   "main": "./dist/index.js",

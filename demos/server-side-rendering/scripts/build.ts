@@ -1,4 +1,4 @@
-import { createBaseWebpackConfig } from '@charge/sdk';
+import { createBaseWebpackConfig } from 'charge-sdk';
 const chalk = require('chalk');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpack = require('webpack');
