@@ -223,6 +223,10 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
     const reactTsRuntimeConfig = packageJson.reactTsRuntime || {};
     const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware && require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware)).default;
 
+    if (reactTsRuntimeConfig.html === undefined) {
+        reactTsRuntimeConfig.html = true;
+    }
+
     const config = createBaseWebpackConfig({ development });
 
     if (reactTsRuntimeConfig.html) {
