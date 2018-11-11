@@ -9,10 +9,8 @@ import { render } from 'react-dom';
 class App extends React.Component {
     render() {
         return (
-            <div className="App">
-                <div className="Message">
-                    React App
-                </div> 
+            <div>
+                React App
             </div>
         );
     }
