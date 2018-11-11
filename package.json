@@ -1,6 +1,6 @@
 {
-  "name": "react-ts-runtime",
-  "version": "0.2.16",
+  "name": "@charge/sdk",
+  "version": "0.3.0",
   "description": "Build, run and test tools for React projects written in TypeScript.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -15,7 +15,7 @@
     "npm": "6.4.1"
   },
   "bin": {
-    "react-ts-runtime": "./dist/cli.js"
+    "@charge/sdk": "./dist/cli.js"
   },
   "repository": {
     "type": "git",

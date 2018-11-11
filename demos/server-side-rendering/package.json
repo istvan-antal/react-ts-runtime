@@ -1,10 +1,10 @@
 {
   "name": "server-side-rendering",
   "version": "1.0.0",
-  "description": "Single page React demo with react-ts-runtime.",
+  "description": "Single page React demo with @charge/sdk.",
   "main": "./src/index.tsx",
   "scripts": {
-    "start": "react-ts-runtime run",
+    "start": "@charge/sdk run",
     "build": "NODE_ENV=production ts-node -P ./tsconfig.json ./scripts/build.ts",
     "test": "echo test"
   },
@@ -15,7 +15,7 @@
     "@types/react-dom": "^16.0.9",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-ts-runtime": "file://../..",
+    "@charge/sdk": "file://../..",
     "ts-node": "^7.0.1"
   }
 }

@@ -1,4 +1,4 @@
-import { createBaseWebpackConfig } from 'react-ts-runtime';
+import { createBaseWebpackConfig } from '@charge/sdk';
 const chalk = require('chalk');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpack = require('webpack');

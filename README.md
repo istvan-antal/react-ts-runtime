@@ -1,4 +1,4 @@
-# React TypeScript Runtime
+# Charge SDK
 
 React TS Runtime is a package that contains all the tooling you need to build your React project written in TypeScript.
 
@@ -8,7 +8,7 @@ React TS Runtime is a package that contains all the tooling you need to build yo
 mkdir yourproject
 cd yourproject
 npm init -y
-npm install react-ts-runtime --save-dev
+npm install @charge/sdk --save-dev
 ```
 
 Create an [src/index.tsx](/demos/single-page-react/src/index.tsx)
@@ -19,8 +19,8 @@ Set the scripts section to the following in your package.json
 
 ```json
 {
-    "start": "react-ts-runtime run",
-    "build": "react-ts-runtime build",
+    "start": "@charge/sdk run",
+    "build": "@charge/sdk build",
 }
 ```
 

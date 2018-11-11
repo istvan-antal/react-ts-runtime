@@ -162,7 +162,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                     test: /\.tsx?$/,
                     loader: "awesome-typescript-loader",
                     options: projectHasTsConfig ? undefined : {
-                        configFileName: require.resolve('react-ts-runtime/tsconfig.json'),
+                        configFileName: require.resolve('@charge/sdk/tsconfig.json'),
                     },
                 },
                 // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
