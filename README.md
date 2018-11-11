@@ -1,4 +1,4 @@
- * Project moved to https://github.com/istvan-antal/charge-sdk *
+*Project moved to https://github.com/istvan-antal/charge-sdk*
 
 # Charge SDK
 
