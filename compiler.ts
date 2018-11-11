@@ -8,18 +8,6 @@ const postcssImport = require('postcss-import');
 const postcssNested = require('postcss-nested');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const packageJson = require(resolve(process.cwd(), './package.json'));
-
-const version = process.env.VERSION || packageJson.version;
-const appEntryPoint = packageJson.main || './app/index';
-const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
-const reactTsRuntimeConfig = packageJson.reactTsRuntime || {};
-const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware && require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware)).default;
-
-if (reactTsRuntimeConfig.html === undefined) {
-    reactTsRuntimeConfig.html = true;
-}
-
 const postCssOptions = {
     // Necessary for external CSS imports to work
     // https://github.com/facebookincubator/create-react-app/issues/2677
@@ -116,6 +104,9 @@ const createPostCssLoader = (development?: boolean) => {
 };
 
 export const createBaseWebpackConfig = ({ development }: { development?: boolean } = {}) => {
+    const packageJson = require(resolve(process.cwd(), './package.json'));
+    const version = process.env.VERSION || packageJson.version;
+
     const plugins = [
         new webpack.NamedModulesPlugin(),
     ];
@@ -225,6 +216,13 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
 };
 
 export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
+    const packageJson = require(resolve(process.cwd(), './package.json'));
+
+    const appEntryPoint = packageJson.main || './app/index';
+    const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
+    const reactTsRuntimeConfig = packageJson.reactTsRuntime || {};
+    const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware && require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware)).default;
+
     const config = createBaseWebpackConfig({ development });
 
     if (reactTsRuntimeConfig.html) {
